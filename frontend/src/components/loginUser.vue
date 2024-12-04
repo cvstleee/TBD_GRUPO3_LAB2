@@ -37,21 +37,21 @@ const login = async () => {
         store.commit('login');
         store.commit('setUserId', response.data.user_id);
         alert('Sesión iniciada correctamente');
-        newOrder();console.log('idUser:', );
+        newOrder(); console.log('idUser:',);
         router.push('/');
     } else {
         alert('Error al iniciar sesión');
     }
-    
-    
+
+
 };
 
-const newOrder = async() => {
-    
+const newOrder = async () => {
+
     const DataNewOrder = {
         "order_date": new Date().toISOString(),
         "state": "Pendiente",
-        "client_id":  store.getters.getUserId,
+        "client_id": store.getters.getUserId,
         "total": 0
     }
 

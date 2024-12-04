@@ -1,27 +1,32 @@
 <template>
-  <VAppBar app color="#FF9800">
-    <VBtn to="/">
-      <VToolbarTitle>Gestión de Productos</VToolbarTitle>
-    </VBtn>
-    <VSpacer></VSpacer>
-    <div class="login-button" v-if="!loginState">
-      <VBtn to="/registerUser" text>Registrar usuario</VBtn>
-      <VBtn to="/login" text>Ingresar</VBtn>
-      <VBtn icon @click="toggleDrawer(true)">
-        <VIcon>mdi-menu</VIcon>
-      </VBtn>
+  <div class="navbar">
+    <router-link to="/">
+      <button class="home-button">
+        <h3>Gestión de Productos</h3>
+      </button>
+    </router-link>
+    <div class="auth-buttons">
+      <div class="login-button" v-if="!loginState">
+        <router-link to="/registerUser">
+          <button class="register-btn">Registrar usuario</button>
+        </router-link>
+        <router-link to="/login">
+          <button class="login-btn">Ingresar</button>
+        </router-link>
+      </div>
+      <div class="logout-button" v-else>
+        <router-link to="/logs">
+          <button class="logs-btn">Bitácora</button>
+        </router-link>
+        <router-link to="/login">
+          <button class="logout-btn" v-on:click="logout">Cerrar sesión</button>
+        </router-link>
+      </div>
     </div>
-    <div class="logout-button" v-else>
-      <VBtn to="/logs" text>
-        Bitacora
-      </VBtn>
-      <VBtn v-on:click="logout" to="/login" text>Cerrar secion</VBtn>
-    </div>
-  </VAppBar>
+  </div>
 </template>
 
 <script setup>
-import { VAppBar, VToolbarTitle, VSpacer, VBtn, VIcon } from '../Utils/vuetifyComponents';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 import { logoutUser } from '../services/clientService';
@@ -39,41 +44,68 @@ const logout = async () => {
   } else {
     alert("Error al desconectar");
   }
-}
-
+};
 </script>
 
 <style scoped>
+/* Estilo general para la barra de navegación */
 .navbar {
   background-color: #333;
   display: flex;
-  /* Asegura que la barra de navegación use flexbox */
-  justify-content: flex-start;
-  /* Alinea el contenido al inicio */
-  padding: 10px;
-  /* Agrega un poco de espaciado interno */
-}
-
-.container-fluid {
-  padding-left: 0;
-  /* Elimina el espaciado a la izquierda */
-}
-
-a {
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
   color: white;
-  /* Color del texto de los enlaces */
-  font-weight: 500;
-  /* Peso de la fuente */
-  font-size: 20px;
-  /* Tamaño de la fuente */
-  text-decoration: none;
-  /* Elimina el subrayado de los enlaces */
-  margin-right: 15px;
-  /* Espacio entre los enlaces */
 }
 
-a:hover {
-  text-decoration: underline;
-  /* Añade un subrayado al pasar el mouse */
+/* Estilo del botón principal (home) */
+.home-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.home-button h3 {
+  margin: 0;
+}
+
+/* Contenedor para los botones de autenticación */
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Botones generales */
+button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #777;
+}
+
+/* Estilo específico para cada tipo de botón */
+.register-btn,
+.login-btn,
+.logs-btn,
+.logout-btn {
+  font-size: 0.9rem;
+}
+
+.logout-btn {
+  background-color: #d9534f;
+  /* Rojo para el botón de cerrar sesión */
+}
+
+.logout-btn:hover {
+  background-color: #c9302c;
+  /* Rojo más oscuro al pasar el mouse */
 }
 </style>

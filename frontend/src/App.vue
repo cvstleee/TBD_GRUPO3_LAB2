@@ -1,5 +1,4 @@
 <script setup>
-import { VApp } from './Utils/vuetifyComponents';
 import Navbar from './components/NavBar.vue';
 import { RouterView } from 'vue-router';
 
@@ -8,11 +7,11 @@ import { RouterView } from 'vue-router';
 
 <template>
 
-  <VApp>
+  <div>
     <Navbar />
     <div class="mt-14">
       <RouterView />
     </div>
-  </VApp>
+  </div>
 
 </template>
