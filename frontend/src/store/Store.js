@@ -49,7 +49,7 @@ export default createStore({
     },
     setUserId({ commit }, userId) {
       commit("setUserId", userId);
-  },
+    },
   },
   getters: {
     getUser: (state) => state.user,

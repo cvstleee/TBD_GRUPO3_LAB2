@@ -1,6 +1,6 @@
 // src/services/productService.js
 
-import httpClient from "../Utils/http-common"; 
+import httpClient from "../Utils/http-common";
 
 const productService = {
   async getProducts() {
@@ -49,28 +49,6 @@ const productService = {
       );
     }
   },
-
-  //   async putProduct(id, product) {
-  //     try {
-  //       const response = await httpClient.put(`${API_URL}/${id}`, product);
-  //       return response.data;
-  //     } catch (error) {
-  //       throw new Error(
-  //         error.response ? error.response.data : "Error al actualizar producto"
-  //       );
-  //     }
-  //   },
-
-  //   async deleteProduct(id) {
-  //     try {
-  //       await httpClient.delete(`${API_URL}/${id}`);
-  //       return true; // Retorna true si se elimina correctamente
-  //     } catch (error) {
-  //       throw new Error(
-  //         error.response ? error.response.data : "Error al eliminar producto"
-  //       );
-  //     }
-  //   },
 };
 
 export default productService;
