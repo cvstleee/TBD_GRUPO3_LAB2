@@ -2,7 +2,6 @@
   <div>
     <h1>Productos</h1>
 
-    <!-- Botones para agregar producto -->
     <div class="button-container">
       <router-link to="/addProduct">
         <button style="background-color: green; color: white;">Agregar Producto</button>
@@ -15,7 +14,6 @@
       </router-link>
     </div>
 
-    <!-- Tabla para mostrar productos -->
     <table class="product-table">
       <thead>
         <tr>
@@ -31,12 +29,9 @@
           <td>{{ product.price }}</td>
           <td>{{ product.stock }}</td>
           <td>
-            <!-- Contenedor para el campo de entrada y el botón -->
             <div style="display: flex; align-items: center;">
-              <!-- Campo de entrada para unidades -->
               <input type="number" v-model.number="product.quantity" min="0" :max="product.stock"
                 style="width: 80px; margin-right: 5px;" />
-              <!-- Botón para agregar a orden -->
               <button @click="sendProductId(product, product.quantity)"
                 :disabled="!isValidQuantity(product.quantity, product.stock)"
                 style="background-color: burlywood; color: white;">
@@ -56,14 +51,12 @@ import productService from '../services/productService';
 import { orderService } from '../services/orderService';
 import { useStore } from 'vuex';
 
-// Definir la lista de productos
 const products = ref([]);
 const store = useStore();
 
 onMounted(async () => {
   try {
     const responseProducts = await productService.getProducts();
-    // Inicializar el campo quantity en 0 para cada producto
     products.value = responseProducts.map((product) => ({
       ...product,
       quantity: 0,
@@ -73,7 +66,6 @@ onMounted(async () => {
   }
 });
 
-// Validar si la cantidad ingresada es válida
 const isValidQuantity = (quantity, stock) => {
   return quantity > 0 && quantity <= stock;
 };
@@ -110,15 +102,12 @@ const actualizarTotal = async (newOrderDetails) => {
   response_order.total =
     response_order.total + newOrderDetails.quantity * newOrderDetails.unit_price;
 
-  console.log('Response: antes de put', response_order);
   const response = await orderService.putOrder(response_order);
-  console.log('Response: despues de put', response);
 };
 
 const actualizarStock = async (product, cantidad) => {
   product.stock = product.stock - cantidad;
   const response = await productService.putProduct(product);
-  console.log('Response:', response);
 };
 </script>
 

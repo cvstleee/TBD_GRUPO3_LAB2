@@ -2,13 +2,10 @@
     <div class="logs">
         <h1>Logs</h1>
 
-        <!-- Indicador de carga -->
         <p v-if="loading" class="loading">Cargando logs...</p>
 
-        <!-- Mensaje de error -->
         <p v-if="error" class="error">{{ error }}</p>
 
-        <!-- Lista de logs -->
         <div v-if="!loading && !error" v-for="log in logs" :key="log.id" class="log-item">
             <p><strong>Client ID:</strong> {{ log.client_id }}</p>
             <p><strong>Table Name:</strong> {{ log.table_name }}</p>
@@ -23,12 +20,10 @@
 import { getAllLogs } from "../services/logsCategory";
 import { ref, onMounted } from "vue";
 
-// Variables reactivas
 const logs = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
-// Función para obtener los logs
 const getLogs = async () => {
     try {
         const { data, status } = await getAllLogs();
@@ -45,14 +40,12 @@ const getLogs = async () => {
     }
 };
 
-// Llamar a la función al montar el componente
 onMounted(async () => {
     await getLogs();
 });
 </script>
 
 <style scoped>
-/* Estilo general */
 .logs {
     font-family: Arial, sans-serif;
     margin: 20px auto;
@@ -63,25 +56,21 @@ onMounted(async () => {
     background-color: #f9f9f9;
 }
 
-/* Título */
 .logs h1 {
     text-align: center;
     color: #333;
 }
 
-/* Indicador de carga */
 .loading {
     text-align: center;
     color: #007bff;
 }
 
-/* Mensaje de error */
 .error {
     text-align: center;
     color: #ff4d4f;
 }
 
-/* Estilo para cada log */
 .log-item {
     margin-bottom: 20px;
     padding: 15px;

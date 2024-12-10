@@ -1,4 +1,4 @@
-import httpClient from "../Utils/http-common"; // Cambia esta URL según tu configuración
+import httpClient from "../Utils/http-common";
 
 export const orderService = {
   async getProductOrdersById(id) {
