@@ -4,6 +4,7 @@ CREATE DATABASE "e-commerce-db";
 \c "e-commerce-db"
 
 DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS stores CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
 DROP TABLE IF EXISTS clients CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
@@ -27,6 +28,12 @@ CREATE TABLE products (
     deleted_at TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
+
+CREATE TABLE stores (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL
+)
 
 CREATE TABLE clients (
     id SERIAL PRIMARY KEY,
