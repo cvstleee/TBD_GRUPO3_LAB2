@@ -48,7 +48,6 @@ const logout = async () => {
 </script>
 
 <style scoped>
-/* Estilo general para la barra de navegación */
 .navbar {
   background-color: #333;
   display: flex;
@@ -58,7 +57,6 @@ const logout = async () => {
   color: white;
 }
 
-/* Estilo del botón principal (home) */
 .home-button {
   background: none;
   border: none;
@@ -71,13 +69,11 @@ const logout = async () => {
   margin: 0;
 }
 
-/* Contenedor para los botones de autenticación */
 .auth-buttons {
   display: flex;
   gap: 10px;
 }
 
-/* Botones generales */
 button {
   background-color: #555;
   color: white;
@@ -91,7 +87,6 @@ button:hover {
   background-color: #777;
 }
 
-/* Estilo específico para cada tipo de botón */
 .register-btn,
 .login-btn,
 .logs-btn,
@@ -101,11 +96,9 @@ button:hover {
 
 .logout-btn {
   background-color: #d9534f;
-  /* Rojo para el botón de cerrar sesión */
 }
 
 .logout-btn:hover {
   background-color: #c9302c;
-  /* Rojo más oscuro al pasar el mouse */
 }
 </style>

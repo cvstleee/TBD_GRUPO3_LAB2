@@ -31,7 +31,6 @@
 import { reactive } from 'vue';
 import { postClient } from '../services/clientService';
 
-// Definimos el objeto reactivo para el usuario
 const userData = reactive({
     name: '',
     address: '',
@@ -40,7 +39,6 @@ const userData = reactive({
     phone: ''
 });
 
-// Función para manejar el registro del usuario
 const registerUser = async () => {
     const response = await postClient(userData);
     if (response.status === 201) {
@@ -55,7 +53,6 @@ const registerUser = async () => {
 .register-container {
     max-width: 400px;
     margin: 0 auto;
-    /* Centra el contenedor */
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -63,27 +60,22 @@ const registerUser = async () => {
 
 h1 {
     text-align: center;
-    /* Centra el texto del título */
     color: green;
 }
 
 form div {
     margin-bottom: 15px;
-    /* Espaciado entre los campos */
 }
 
 label {
     display: block;
-    /* Asegura que las etiquetas estén en línea separada */
     margin-bottom: 5px;
-    /* Espaciado entre la etiqueta y el campo */
 }
 
 input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
-    /* Incluye padding en el ancho total */
 }
 
 button {

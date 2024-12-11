@@ -35,7 +35,6 @@
         </select>
       </div>
 
-      <!-- Botón de envío -->
       <button type="submit">Crear</button>
     </form>
   </div>
@@ -46,7 +45,6 @@ import { ref, onMounted } from 'vue';
 import productService from '../services/productService';
 import categoryService from '../services/categoryService';
 
-// Definir el objeto product con sus propiedades iniciales
 const product = ref({
   name: '',
   description: '',
@@ -56,17 +54,12 @@ const product = ref({
   categoryId: null,
 });
 
-// Definir la lista de categorías
 const categories = ref([]);
 
-// Función para registrar un nuevo producto
 const registerProduct = async () => {
   try {
-    // Enviar tanto el producto como la ID de la categoría
     const response = await productService.postProduct(product.value, product.value.categoryId);
-    console.log(response);
 
-    // Resetear el formulario
     product.value = {
       name: '',
       description: '',

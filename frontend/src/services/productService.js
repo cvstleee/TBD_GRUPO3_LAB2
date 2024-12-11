@@ -1,5 +1,3 @@
-// src/services/productService.js
-
 import httpClient from "../Utils/http-common";
 
 const productService = {

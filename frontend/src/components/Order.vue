@@ -54,19 +54,13 @@ const obtenerOrder = async () => {
 
     total.value = response_order.total;
 
+    const response = await orderService.getProductOrdersById(orderID);
 
-    const response = await orderService.getProductOrdersById(orderID); // Ajusta según tu API
+    const orderData = response;
 
-    const orderData = response; // Asumiendo que response.data contiene la orden
-
-    // Extraer los product_ids de la orden
     const productIds = orderData.map(order => order.product_id);
-    // Hacer solicitudes para cada product_id
     const productRequests = productIds.map(id => productService.getProduct(id));
-    // Esperar todas las respuestas
     const productsResponses = await Promise.all(productRequests);
-
-    console.log('Solicitudes de productos:', productsResponses);
 
     products.value = productsResponses.map((res, index) => ({
       name: res.name || 'Nombre no disponible',

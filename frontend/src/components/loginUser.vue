@@ -22,22 +22,19 @@ import { useStore } from 'vuex';
 import { orderService } from '../services/orderService';
 import { useRouter } from 'vue-router';
 
-// Definimos las variables reactivas para email y password
 const userData = ref({ email: '', password: '' });
 const store = useStore();
 
 const router = useRouter();
 
-// Función para manejar el inicio de sesión
 const login = async () => {
     const response = await loginUser(userData.value);
-    console.log('Response login:', response);
     if (response.status === 200) {
         store.commit('setUser', response.data);
         store.commit('login');
         store.commit('setUserId', response.data.user_id);
         alert('Sesión iniciada correctamente');
-        newOrder(); console.log('idUser:',);
+        newOrder();
         router.push('/');
     } else {
         alert('Error al iniciar sesión');
@@ -56,9 +53,7 @@ const newOrder = async () => {
     }
 
     const response = await orderService.postOrder(DataNewOrder);
-    console.log('Response:', response.id);
     store.commit('setOrderId', response.id);
-    console.log('idOrder:', store.getters.getOrderId);
     return response;
 }
 
