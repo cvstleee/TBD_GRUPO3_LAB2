@@ -154,3 +154,22 @@ CREATE TRIGGER trigger_log_order_details
 AFTER INSERT OR DELETE OR UPDATE ON order_details
 FOR EACH ROW
 EXECUTE FUNCTION log_order_details();
+
+
+CREATE OR REPLACE FUNCTION add_municipality_from_zone()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.region = 'Región Metropolitana de Santiago' AND NEW.provincia = 'Santiago' THEN
+        INSERT INTO municipalities (name, area)
+        VALUES (NEW.comuna, NEW.geom);
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS trigger_add_municipality_from_zone ON zones;
+CREATE TRIGGER trigger_add_municipality_from_zone
+AFTER INSERT ON zones
+FOR EACH ROW
+EXECUTE FUNCTION add_municipality_from_zone();
