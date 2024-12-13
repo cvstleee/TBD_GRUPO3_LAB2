@@ -1,5 +1,7 @@
 package com.example.backend.services;
 
+import com.example.backend.dtos.OrderDTO;
+import com.example.backend.dtos.OrderUpdateDTO;
 import com.example.backend.dtos.QueryDTO;
 import com.example.backend.entities.ClientEntity;
 import com.example.backend.entities.OrderEntity;
@@ -34,24 +36,24 @@ public class OrderService {
         return order;
     }
 
-    public OrderEntity createOrder(OrderEntity order) {
-        ClientEntity possibleClient = clientRepository.findById(order.getClient_id());
+    public OrderEntity createOrder(OrderDTO orderDTO) {
+        ClientEntity possibleClient = clientRepository.findById(orderDTO.getClient_id());
         int authIdClient = authService.getAuthIdClient();
         if (possibleClient == null) {
             throw new EntityNotFoundException("Client not found");
         }
 
-        return orderRepository.save(order, authIdClient);
+        return orderRepository.save(orderDTO, authIdClient);
     }
 
-    public OrderEntity updateOrder(Long id, OrderEntity order) {
+    public OrderEntity updateOrder(Long id, OrderUpdateDTO orderDTO) {
         OrderEntity possibleOrder = orderRepository.findById(id);
         int authIdClient = authService.getAuthIdClient();
         if (possibleOrder == null) {
             throw new EntityNotFoundException("Order not found");
         }
 
-        return orderRepository.update(id, order, authIdClient);
+        return orderRepository.update(id, orderDTO, authIdClient);
     }
 
     public boolean deletedOrder(Long id) {

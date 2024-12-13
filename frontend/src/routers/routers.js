@@ -1,22 +1,22 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../components/Home.vue";
-import Register from "../components/registerUser.vue";
-import login from "../components/loginUser.vue";
+import home from "../components/Home.vue";
+import register from "../components/RegisterUser.vue";
+import login from "../components/LoginUser.vue";
 import order from "../components/Order.vue";
-import AddProduct from "../components/AddProduct.vue";
+import addProduct from "../components/AddProduct.vue";
 import logs from "../components/Logs.vue";
-import ConfirmOrder from "../components/ConfirmOrder.vue";
+import confirmOrder from "../components/ConfirmOrder.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: home,
   },
   {
     path: "/registerUser",
-    name: "Register",
-    component: Register,
+    name: "register",
+    component: register,
   },
   {
     path: "/login",
@@ -31,7 +31,7 @@ const routes = [
   {
     path: "/addProduct",
     name: "AddProduct",
-    component: AddProduct,
+    component: addProduct,
   },
   {
     path: "/logs",
@@ -41,7 +41,7 @@ const routes = [
   {
     path: "/confirmOrder",
     name: "ConfirmOrder",
-    component: ConfirmOrder,
+    component: confirmOrder,
   }
 ];
 

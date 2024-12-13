@@ -1,5 +1,7 @@
 package com.example.backend.repositories;
 
+import com.example.backend.dtos.OrderDTO;
+import com.example.backend.dtos.OrderUpdateDTO;
 import com.example.backend.dtos.QueryDTO;
 import com.example.backend.entities.OrderEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,10 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 @Repository
 public class OrderRepository {
@@ -34,41 +38,55 @@ public class OrderRepository {
         }
     }
 
-    public OrderEntity save(OrderEntity order, int clientId) {
+    public OrderEntity save(OrderDTO orderDTO, int clientId) {
         try (Connection con = sql2o.beginTransaction()) {
             con.createQuery("SET LOCAL application.client_id = " + clientId).executeUpdate();
 
-            String query = "INSERT INTO orders (order_date, state, client_id, total, shipping_date) " +
-            "VALUES (:order_date, :state, :client_id, :total, :shipping_date) RETURNING id";
+            String query = "INSERT INTO orders (order_date, state, client_id, total, shipping_date, latitude, longitude, delivery_location) " +
+            "VALUES (:order_date, :state, :client_id, :total, null, :latitude, :longitude, ST_GeomFromText(:delivery_location, 4326)) " +
+                    "RETURNING id";
+
+            Timestamp order_dateKWT = Timestamp.valueOf(LocalDateTime.now());
+            String delivery_locationWKT = String.format(Locale.US, "POINT(%f %f)", orderDTO.getLongitude(), orderDTO.getLatitude());
+
             int id = con.createQuery(query, true)
-                    .addParameter("order_date", order.getOrder_date())
-                    .addParameter("state", order.getState())
-                    .addParameter("client_id", order.getClient_id())
-                    .addParameter("total", order.getTotal())
-                    .addParameter("shipping_date", order.getShipping_date())
+                    .addParameter("order_date", order_dateKWT)
+                    .addParameter("state", orderDTO.getState())
+                    .addParameter("client_id", orderDTO.getClient_id())
+                    .addParameter("total", orderDTO.getTotal())
+                    .addParameter("latitude", orderDTO.getLatitude())
+                    .addParameter("longitude", orderDTO.getLongitude())
+                    .addParameter("delivery_location", delivery_locationWKT)
                     .executeUpdate()
                     .getKey(Integer.class);
             con.commit();
-            order.setId(id);
-            return order;
+
+            return findById(id);
         }
     }
 
-    public OrderEntity update(long id, OrderEntity order, int clientId) {
+    public OrderEntity update(long id, OrderUpdateDTO orderDTO, int clientId) {
         try (Connection con = sql2o.beginTransaction()) {
             con.createQuery("SET LOCAL application.client_id = " + clientId).executeUpdate();
 
-            String query = "UPDATE orders SET state = :state, total = :total WHERE id = :id";
+            String query = "UPDATE orders " +
+                    "SET state = :state, total = :total, shipping_date = :shipping_date, latitude = :latitude, longitude = :longitude, delivery_location = ST_GeomFromText(:delivery_location, 4326)" +
+                    "WHERE id = :id";
+
+            String delivery_locationWKT = String.format(Locale.US, "POINT(%f %f)", orderDTO.getLongitude(), orderDTO.getLatitude());
+
             con.createQuery(query)
-                    .addParameter("state", order.getState())
-                    .addParameter("total", order.getTotal())
+                    .addParameter("state", orderDTO.getState())
+                    .addParameter("total", orderDTO.getTotal())
+                    .addParameter("shipping_date", orderDTO.getShipping_date())
+                    .addParameter("latitude", orderDTO.getLatitude())
+                    .addParameter("longitude", orderDTO.getLongitude())
+                    .addParameter("delivery_location", delivery_locationWKT)
                     .addParameter("id", id)
                     .executeUpdate();
             con.commit();
-            OrderEntity updatedOrder = con.createQuery("SELECT * FROM orders WHERE id =:id")
-                    .addParameter("id", order.getId())
-                    .executeAndFetchFirst(OrderEntity.class);
-            return updatedOrder;
+
+            return findById(id);
         }
     }
 

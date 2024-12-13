@@ -1,5 +1,7 @@
 package com.example.backend.controllers;
 
+import com.example.backend.dtos.OrderDTO;
+import com.example.backend.dtos.OrderUpdateDTO;
 import com.example.backend.dtos.QueryDTO;
 import com.example.backend.entities.OrderEntity;
 import com.example.backend.services.OrderService;
@@ -31,13 +33,13 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderEntity> postOrder(@RequestBody OrderEntity order) {
-        return new ResponseEntity<>(orderService.createOrder(order), HttpStatus.CREATED);
+    public ResponseEntity<OrderEntity> postOrder(@RequestBody OrderDTO orderDTO) {
+        return new ResponseEntity<>(orderService.createOrder(orderDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderEntity> putOrder(@PathVariable Long id, @RequestBody OrderEntity order) {
-        return new ResponseEntity<>(orderService.updateOrder(id, order), HttpStatus.OK);
+    public ResponseEntity<OrderEntity> putOrder(@PathVariable Long id, @RequestBody OrderUpdateDTO orderDTO) {
+        return new ResponseEntity<>(orderService.updateOrder(id, orderDTO), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
