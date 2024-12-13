@@ -22,21 +22,13 @@ public class AuthService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public ClientEntity register(RegisterDTO clientDTO) {
-        ClientEntity existingClientEntityByEmail = clientRepository.findByEmail(clientDTO.getEmail());
+    public ClientEntity register(RegisterDTO registerDTO) {
+        ClientEntity existingClientEntityByEmail = clientRepository.findByEmail(registerDTO.getEmail());
         if (existingClientEntityByEmail != null) {
             throw new IllegalStateException("The email is already used");
         }
 
-        ClientEntity client = ClientEntity.builder()
-                .name(clientDTO.getName())
-                .address(clientDTO.getAddress())
-                .email(clientDTO.getEmail())
-                .password(clientDTO.getPassword())
-                .phone(clientDTO.getPhone())
-                .build();
-
-        return clientRepository.save(client);
+        return clientRepository.save(registerDTO);
     }
 
     public LoginResponseDTO login(LoginDTO loginDTO) {
