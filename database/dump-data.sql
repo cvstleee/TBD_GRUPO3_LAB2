@@ -20,9 +20,9 @@ INSERT INTO products (name, description, price, stock, state, category_id) VALUE
 
 -- Carga de datos para la tabla "clients"
 INSERT INTO clients (name, address, email, password, phone) VALUES
-('Juan Perez', 'Calle 123, Ciudad A', 'juan.perez@gmail.com', 'password123', '555-1234'),
-('Maria Gomez', 'Avenida 456, Ciudad B', 'maria.gomez@hotmail.com', 'securepass456', '555-5678'),
-('Carlos Ramirez', 'Boulevard 789, Ciudad C', 'carlos.ramirez@yahoo.com', 'mypassword789', '555-9101');
+('Juan Perez', 'juan.perez@gmail.com', 'password123', '555-1234'),
+('Maria Gomez', 'maria.gomez@hotmail.com', 'securepass456', '555-5678'),
+('Carlos Ramirez', 'carlos.ramirez@yahoo.com', 'mypassword789', '555-9101');
 
 -- Carga de datos para la tabla "orders"
 INSERT INTO orders (order_date, state, client_id, total, shipping_date) VALUES 
