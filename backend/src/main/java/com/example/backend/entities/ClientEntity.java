@@ -14,9 +14,11 @@ import java.sql.Timestamp;
 public class ClientEntity {
     private int id;
     private String name;
-    private String address;
     private String email;
     private String password;
     private String phone;
+    private Double latitude;
+    private Double longitude;
+    private String location;
     private Timestamp deleted_at;
 }
