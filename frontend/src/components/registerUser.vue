@@ -50,10 +50,11 @@ const locationInput = ref(null);
 
 const userData = reactive({
     name: '',
-    address: '',
     email: '',
     password: '',
-    phone: ''
+    phone: '',
+    latitude: '',
+    longitude: '',
 });
 
 const registerUser = async () => {
@@ -108,6 +109,8 @@ const cargarMapa = async () =>{
   
         latitude.value = location.lat();
         longitude.value = location.lng();
+        userData.latitude = location.lat();
+        userData.longitude = location.lng();
       });
     });
   }

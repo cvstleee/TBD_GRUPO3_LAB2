@@ -17,5 +17,8 @@ public class OrderEntity {
     private int client_id;
     private double total;
     private Date shipping_date;
+    private double latitude;
+    private double longitude;
+    private String delivery_location;
     private Timestamp deleted_at;
 }

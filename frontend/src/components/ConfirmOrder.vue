@@ -17,6 +17,7 @@
         <p>Latitud: {{ latitude }}</p>
         <p>Longitud: {{ longitude }}</p>
       </div>
+      <button @click="actualizarOrder">Pagar orden</button>
     </div>
   </template>
   
@@ -25,6 +26,7 @@
   import { useStore } from 'vuex';
   import { getUser } from '../services/clientService';
   import { orderService } from '../services/orderService';
+  
   
   const locationInput = ref(null);
   const mapContainer = ref(null);
@@ -90,6 +92,7 @@
   const obtenerOrden = async () => {
     try {
       const response = await orderService.gerOrderById(orderID);
+      console.log(response);
       total.value = response.total;
     } catch (error) {
       console.error('Error al obtener la orden:', error);
@@ -104,6 +107,19 @@
       console.error('Error al obtener el usuario:', error);
     }
   };
+
+  const actualizarOrder = async (newOrderDetails) => {
+    const orderID = store.getters.getOrderId;
+    const response_order = await orderService.gerOrderById(orderID);
+
+    response_order.latitude= latitude.value;
+    response_order.longitude= longitude.value;
+    response_order.state = "pagada";
+    console.log(response_order);
+
+    const response = await orderService.putOrder(response_order);
+};
+
   </script>
   
   <style scoped>
