@@ -17,6 +17,6 @@ public class DistributorService {
     }
 
     public List<DistributorEntity> getDistributorsByComuna(int comunaId) {
-        return distributorRepository.findDistributorsByZone(comunaId);
+        return distributorRepository.findDistributorsByComuna(comunaId);
     }
 }
