@@ -95,28 +95,6 @@ CREATE TABLE logs (
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
--- Entregado por herramienta sh2pgsql trabajando el documento .shp con información de comunas de Chile
-SET CLIENT_ENCODING TO UTF8;
-SET STANDARD_CONFORMING_STRINGS TO ON;
-BEGIN;
-CREATE TABLE "public"."zones" (gid serial,
-"objectid" float8,
-"shape_leng" numeric,
-"dis_elec" int4,
-"cir_sena" int4,
-"cod_comuna" int4,
-"codregion" int4,
-"st_area_sh" numeric,
-"st_length_" numeric,
-"region" varchar(60),
-"comuna" varchar(60),
-"provincia" varchar(60));
-ALTER TABLE "public"."zones" ADD PRIMARY KEY (gid);
-SELECT AddGeometryColumn('public','zones','geom','4326','MULTIPOLYGON',2);
-CREATE INDEX ON "public"."zones" USING GIST ("geom");
-COMMIT;
-
-
 CREATE INDEX idx_stores_location ON stores USING GIST(location);
 CREATE INDEX idx_clients_location ON clients USING GIST(location);
 CREATE INDEX idx_orders_delivery_location ON orders USING GIST(delivery_location);
