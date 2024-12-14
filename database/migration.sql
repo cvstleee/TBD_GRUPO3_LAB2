@@ -1,3 +1,7 @@
+CREATE DATABASE "e-commerce-db";
+
+\c "e-commerce-db"
+
 CREATE EXTENSION postgis;
 
 DROP TABLE IF EXISTS products CASCADE;
