@@ -41,6 +41,11 @@ CREATE TABLE stores (
     location GEOMETRY(POINT, 4326)
 );
 
+CREATE TABLE distributors (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+)
+
 CREATE TABLE clients (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -65,6 +70,7 @@ CREATE TABLE orders (
     delivery_location GEOMETRY(POINT, 4326),
     deleted_at TIMESTAMP,
     FOREIGN KEY (client_id) REFERENCES clients(id)
+    FOREIGN KEY (distributor_id) REFERENCES distributors(id)
 );
 
 CREATE TABLE order_details (
