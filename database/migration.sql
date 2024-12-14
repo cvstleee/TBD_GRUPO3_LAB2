@@ -38,13 +38,8 @@ CREATE TABLE stores (
 
 CREATE TABLE distributors (
     id SERIAL PRIMARY KEY,
-<<<<<<< HEAD
     name VARCHAR(255) NOT NULL
 );
-=======
-    name VARCHAR(255) NOT NULL,
-)
->>>>>>> origin/Aylin
 
 CREATE TABLE clients (
     id SERIAL PRIMARY KEY,
@@ -70,11 +65,7 @@ CREATE TABLE orders (
     longitude DOUBLE PRECISION,
     delivery_location GEOMETRY(POINT, 4326),
     deleted_at TIMESTAMP,
-<<<<<<< HEAD
     FOREIGN KEY (client_id) REFERENCES clients(id),
-=======
-    FOREIGN KEY (client_id) REFERENCES clients(id)
->>>>>>> origin/Aylin
     FOREIGN KEY (distributor_id) REFERENCES distributors(id)
 );
 
