@@ -11,7 +11,8 @@ DROP TABLE IF EXISTS clients CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS order_details CASCADE;
 DROP TABLE IF EXISTS logs CASCADE;
-DROP TABLE IF EXISTS municipalities CASCADE;
+DROP TABLE IF EXISTS comunas_santiago CASCADE;
+DROP TABLE IF EXISTS restricted_comunas CASCADE;
 
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
@@ -84,13 +85,6 @@ CREATE TABLE order_details (
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
-CREATE TABLE municipalities (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    restricted BOOLEAN DEFAULT FALSE,
-    area GEOMETRY(MULTIPOLYGON, 4326)
-);
-
 CREATE TABLE logs (
     id SERIAL PRIMARY KEY,
     client_id INT, 
@@ -99,6 +93,21 @@ CREATE TABLE logs (
     operation TEXT,
     description TEXT,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+
+CREATE TABLE comunas_santiago (
+    id SERIAL PRIMARY KEY,
+    cod_comuna INT,
+    comuna VARCHAR(255),
+    provincia VARCHAR(255),
+    region VARCHAR(255),
+    geom GEOMETRY(POLYGON, 4326)
+);
+
+CREATE TABLE restricted_comunas (
+    id SERIAL PRIMARY KEY,
+    comuna_id INT NOT NULL,
+    FOREIGN KEY (comuna_id) REFERENCES comunas_santiago(id)
 );
 
 CREATE INDEX idx_stores_location ON stores USING GIST(location);
