@@ -6,6 +6,10 @@ import order from "../components/Order.vue";
 import addProduct from "../components/AddProduct.vue";
 import logs from "../components/Logs.vue";
 import confirmOrder from "../components/ConfirmOrder.vue";
+import pruebasMapa from "../components/pruebasMapa.vue";
+import querry1 from "../components/Querry1.vue";
+import querry2 from "../components/Querry2.vue";
+import querry3 from "../components/Querry3.vue";
 
 const routes = [
   {
@@ -42,7 +46,27 @@ const routes = [
     path: "/confirmOrder",
     name: "ConfirmOrder",
     component: confirmOrder,
-  }
+  },
+  {
+    path: "/pruebasMapa",
+    name: "pruebasMapa",
+    component: pruebasMapa,
+  },
+  {
+    path: "/querry1",
+    name: "querry1",
+    component: querry1,
+  },
+  {
+    path: "/querry2",
+    name: "querry2",
+    component: querry2,
+  },
+  {
+    path: "/querry3",
+    name: "querry3",
+    component: querry3,
+  },
 ];
 
 const router = createRouter({
