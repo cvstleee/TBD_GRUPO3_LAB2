@@ -21,11 +21,15 @@ public class DistributorRepository {
         }
     }
 
-    public List<DistributorEntity> findDistributorsByComuna(int idComuna){
+    public List<DistributorEntity> findDistributorsByComuna(int idComuna) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT DISTINCT d FROM orders o JOIN distributors d ON o.distributor_id = d.id \" +\n" +
-                    "           \"JOIN comunas_santiago c ON ST_Contains(c.geom, o.delivery_location) WHERE c.id = :idComuna")
+            return con.createQuery("SELECT DISTINCT d.id, d.name FROM orders o " +
+                            "JOIN distributors d ON o.distributor_id = d.id " +
+                            "JOIN comunas_santiago c ON ST_Contains(c.geom, o.delivery_location) " +
+                            "WHERE c.id = :idComuna")
+                    .addParameter("idComuna", idComuna)
                     .executeAndFetch(DistributorEntity.class);
         }
     }
+
 }
