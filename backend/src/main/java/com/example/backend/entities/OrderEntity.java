@@ -15,6 +15,7 @@ public class OrderEntity {
     private Timestamp order_date;
     private String state;
     private int client_id;
+    private int distributor_id;
     private double total;
     private Date shipping_date;
     private double latitude;
