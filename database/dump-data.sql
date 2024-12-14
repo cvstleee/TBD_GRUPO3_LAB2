@@ -24,10 +24,16 @@ INSERT INTO clients (name, address, email, password, phone) VALUES
 ('Maria Gomez', 'maria.gomez@hotmail.com', 'securepass456', '555-5678'),
 ('Carlos Ramirez', 'carlos.ramirez@yahoo.com', 'mypassword789', '555-9101');
 
+-- Carga de datos para la table "distribuitors"
+INSERT INTO distributors (name) VALUES
+('Nicolas Perez'),	
+('Angelica Guzman'),
+('Anais Osorio');
+
 -- Carga de datos para la tabla "orders"
-INSERT INTO orders (order_date, state, client_id, total, shipping_date) VALUES 
-(NOW() - INTERVAL '2 months', 'shipped', 1, 719.98, NOW() - INTERVAL '1 month'), 
-(NOW() - INTERVAL '1 month', 'shipped', 2, 35.98, NOW() - INTERVAL '15 days'),  
+INSERT INTO orders (order_date, state, client_id, total, shipping_date, distributor_id) VALUES 
+(NOW() - INTERVAL '2 months', 'shipped', 1, 719.98, NOW() - INTERVAL '1 month', 1), 
+(NOW() - INTERVAL '1 month', 'shipped', 2, 35.98, NOW() - INTERVAL '15 days', 2),  
 (NOW() - INTERVAL '3 weeks', 'pending', 3, 49.99, NULL);
 
 -- Carga de datos para la tabla "order_details"

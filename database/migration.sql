@@ -1,8 +1,3 @@
--- Creación de la base de datos
-CREATE DATABASE "e-commerce-db";
-
-\c "e-commerce-db"
-
 CREATE EXTENSION postgis;
 
 DROP TABLE IF EXISTS products CASCADE;
@@ -41,6 +36,11 @@ CREATE TABLE stores (
     location GEOMETRY(POINT, 4326)
 );
 
+CREATE TABLE distributors (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE clients (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -58,13 +58,15 @@ CREATE TABLE orders (
     order_date TIMESTAMP NOT NULL,
     state VARCHAR(50) NOT NULL,
     client_id SERIAL NOT NULL,
+	distributor_id SERIAL NOT NULL,
     total DECIMAL(10, 2) NOT NULL,
     shipping_date timestamp without time zone,
     latitude DOUBLE PRECISION,
     longitude DOUBLE PRECISION,
     delivery_location GEOMETRY(POINT, 4326),
     deleted_at TIMESTAMP,
-    FOREIGN KEY (client_id) REFERENCES clients(id)
+    FOREIGN KEY (client_id) REFERENCES clients(id),
+    FOREIGN KEY (distributor_id) REFERENCES distributors(id)
 );
 
 CREATE TABLE order_details (
