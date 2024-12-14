@@ -70,11 +70,7 @@ CREATE TABLE orders (
     longitude DOUBLE PRECISION,
     delivery_location GEOMETRY(POINT, 4326),
     deleted_at TIMESTAMP,
-<<<<<<< HEAD
     FOREIGN KEY (client_id) REFERENCES clients(id),
-=======
-    FOREIGN KEY (client_id) REFERENCES clients(id)
->>>>>>> origin/Aylin
     FOREIGN KEY (distributor_id) REFERENCES distributors(id)
 );
 
