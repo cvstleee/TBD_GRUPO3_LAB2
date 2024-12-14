@@ -1,17 +1,18 @@
 package com.example.backend.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ComunaEntity {
+public class DistributorEntity {
     private int id;
-    private int cod_comuna;
-    private String comuna;
-    private String provincia;
-    private String region;
-    private String geom;
+    private String name;
+    private double latitude;
+    private double longitude;
+    private String location;
 }
