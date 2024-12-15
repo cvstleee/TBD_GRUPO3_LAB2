@@ -107,6 +107,7 @@ CREATE TABLE comunas_santiago (
 CREATE TABLE restricted_comunas (
     id SERIAL PRIMARY KEY,
     comuna_id INT NOT NULL,
+    deleted_at TIMESTAMP,
     FOREIGN KEY (comuna_id) REFERENCES comunas_santiago(id)
 );
 

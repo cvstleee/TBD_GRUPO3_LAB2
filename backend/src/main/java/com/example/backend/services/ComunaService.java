@@ -2,6 +2,7 @@ package com.example.backend.services;
 
 import com.example.backend.dtos.LocationDTO;
 import com.example.backend.entities.ComunaEntity;
+import com.example.backend.entities.RestrictedCommune;
 import com.example.backend.repositories.ComunaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,4 +21,20 @@ public class ComunaService {
     public Boolean isLocationRestricted(LocationDTO locationDTO) {
         return comunaRepository.isLocationRestricted(locationDTO);
     }
+
+    //    Restricted commune
+
+    public RestrictedCommune postRestrictedCommune(int communeId) {
+
+        return comunaRepository.postRestrictedCommune(communeId);
+    }
+    public List<RestrictedCommune> getAllRestrictedCommune() {
+        return comunaRepository.getAllRestrictedCommune();
+    }
+
+    public RestrictedCommune deleteRestrictedCommune(int communeId) {
+        return comunaRepository.deleteRestrictedCommune(communeId);
+    }
+
+
 }
