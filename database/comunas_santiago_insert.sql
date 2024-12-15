@@ -1,3 +1,5 @@
+\c "e-commerce-db"
+
 CREATE TABLE IF NOT EXISTS comunas_santiago (
     id SERIAL PRIMARY KEY,
     cod_comuna INT,

@@ -21,8 +21,14 @@ public class ComunaController {
         return new ResponseEntity<>(comunaService.findAllComunas(), HttpStatus.OK);
     }
 
-    @PostMapping("restricted/check")
+    @PostMapping("/restricted/check")
     public ResponseEntity<Boolean> isLocationRestricted(@RequestBody LocationDTO locationDTO){
         return new ResponseEntity<>(comunaService.isLocationRestricted(locationDTO), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/restringidas")
+    public ResponseEntity<List<ComunaEntity>> comunaNoRestricted(){
+        return new ResponseEntity<>(comunaService.comunaNoRestricted(), HttpStatus.OK);
     }
 }

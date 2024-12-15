@@ -20,4 +20,9 @@ public class ComunaService {
     public Boolean isLocationRestricted(LocationDTO locationDTO) {
         return comunaRepository.isLocationRestricted(locationDTO);
     }
+
+
+    public List<ComunaEntity> comunaNoRestricted(){
+        return comunaRepository.comunaNoRestricted();
+    }
 }

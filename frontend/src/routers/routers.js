@@ -6,7 +6,6 @@ import order from "../components/Order.vue";
 import addProduct from "../components/AddProduct.vue";
 import logs from "../components/Logs.vue";
 import confirmOrder from "../components/ConfirmOrder.vue";
-import pruebasMapa from "../components/pruebasMapa.vue";
 import querry1 from "../components/Querry1.vue";
 import querry2 from "../components/Querry2.vue";
 import querry3 from "../components/Querry3.vue";
@@ -46,11 +45,6 @@ const routes = [
     path: "/confirmOrder",
     name: "ConfirmOrder",
     component: confirmOrder,
-  },
-  {
-    path: "/pruebasMapa",
-    name: "pruebasMapa",
-    component: pruebasMapa,
   },
   {
     path: "/querry1",
