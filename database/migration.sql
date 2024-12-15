@@ -113,4 +113,4 @@ CREATE TABLE restricted_comunas (
 CREATE INDEX idx_stores_location ON stores USING GIST(location);
 CREATE INDEX idx_clients_location ON clients USING GIST(location);
 CREATE INDEX idx_orders_delivery_location ON orders USING GIST(delivery_location);
-CREATE INDEX idx_municipalities_area ON municipalities USING GIST(area);
+CREATE INDEX idx_comunas_santiago_geom ON comunas_santiago USING GIST(geom);

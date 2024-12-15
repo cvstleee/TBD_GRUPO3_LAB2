@@ -39,4 +39,9 @@ public class ClientController {
         response.put("success", clientService.deleteClient(id));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/outOfServiceRange")
+    public ResponseEntity<List<ClientEntity>> getOutOfServiceRange() {
+        return new ResponseEntity<>(clientService.findClientsOutOfServiceRange(), HttpStatus.OK);
+    }
 }
