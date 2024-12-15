@@ -18,6 +18,15 @@
         <router-link to="/logs">
           <button class="logs-btn">Bitácora</button>
         </router-link>
+        <router-link to="/querry1">
+          <button class="dropdown-item">Querry 1</button>
+        </router-link>
+        <router-link to="/querry2">
+          <button class="dropdown-item">Querry 2</button>
+        </router-link>
+        <router-link to="/querry3">
+          <button class="dropdown-item">Querry 3</button>
+        </router-link>
         <router-link to="/login">
           <button class="logout-btn" v-on:click="logout">Cerrar sesión</button>
         </router-link>
