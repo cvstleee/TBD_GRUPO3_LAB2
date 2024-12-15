@@ -6,6 +6,7 @@ import order from "../components/Order.vue";
 import addProduct from "../components/AddProduct.vue";
 import logs from "../components/Logs.vue";
 import confirmOrder from "../components/ConfirmOrder.vue";
+import RestrictedCommune from "../components/RestrictedCommune.vue";
 import querry1 from "../components/Querry1.vue";
 import querry2 from "../components/Querry2.vue";
 import querry3 from "../components/Querry3.vue";
@@ -61,6 +62,11 @@ const routes = [
     name: "querry3",
     component: querry3,
   },
+  {
+    path: "/restrictedCommune",
+    name: "RestrictedCommune",
+    component: RestrictedCommune,
+  },
 ];
 
 const router = createRouter({
@@ -70,4 +76,3 @@ const router = createRouter({
 });
 
 export default router;
-
