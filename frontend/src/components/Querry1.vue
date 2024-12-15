@@ -1,7 +1,6 @@
 <template>
     <div class="container">
-        <h1>Listar los repartidores que han entregado pedidos en una zona específica definida por un polígono (zona de reparto)</h1>
-        
+        <h1 class="title">Listar los repartidores que han entregado pedidos en una zona específica definida por un polígono (zona de reparto)</h1>
         
         <div class="dropdown-container">
             <h2>Seleccione comuna</h2>
@@ -12,8 +11,9 @@
                 </option>
             </select>
         </div>
-        <div>
-            <button @click="getQuerry1(selectedComuna)">Buscar Repartidores</button>
+
+        <div class="button-container">
+            <button @click="getQuerry1(selectedComuna)" class="search-button">Buscar Repartidores</button>
         </div>
 
         <table>
@@ -46,7 +46,6 @@ onMounted(() => {
     getComunasSantiago();
 });
 
-
 const getComunasSantiago = async () => {
     try {
         const response = await getComunas();
@@ -55,8 +54,6 @@ const getComunasSantiago = async () => {
         console.error('Error al obtener las comunas:', error);
     }
 };
-
-
 
 const getQuerry1 = async (id_comuna) => {
     console.log(selectedComuna.value);
@@ -68,22 +65,29 @@ const getQuerry1 = async (id_comuna) => {
         console.error('Error al obtener las comunas:', error);
     }
 };
-
 </script>
 
 <style scoped>
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
 .dropdown-container {
+    display: flex;
+    align-items: center;
     margin: 20px 0;
 }
 
+.dropdown-container h2 {
+    margin-right: 10px;
+}
 
 .dropdown {
     width: 300px; 
@@ -94,6 +98,23 @@ const getQuerry1 = async (id_comuna) => {
     border-radius: 5px; 
 }
 
+.button-container {
+    margin-bottom: 20px;
+}
+
+.search-button {
+    font-size: 18px; 
+    padding: 10px 20px; 
+    background-color: #007BFF; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
 
 table {
     width: 100%;

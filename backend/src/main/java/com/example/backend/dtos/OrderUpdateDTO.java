@@ -15,4 +15,5 @@ public class OrderUpdateDTO {
     private Date shipping_date;
     private double latitude;
     private double longitude;
+    private int distributor_id;
 }

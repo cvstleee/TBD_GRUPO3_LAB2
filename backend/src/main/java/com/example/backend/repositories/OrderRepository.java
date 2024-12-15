@@ -70,7 +70,7 @@ public class OrderRepository {
             con.createQuery("SET LOCAL application.client_id = " + clientId).executeUpdate();
 
             String query = "UPDATE orders " +
-                    "SET state = :state, total = :total, shipping_date = :shipping_date, latitude = :latitude, longitude = :longitude, delivery_location = ST_GeomFromText(:delivery_location, 4326)" +
+                    "SET state = :state, total = :total, shipping_date = :shipping_date, latitude = :latitude, longitude = :longitude,distributor_id = :distributor_id ,delivery_location = ST_GeomFromText(:delivery_location, 4326)" +
                     "WHERE id = :id";
 
             String delivery_locationWKT = String.format(Locale.US, "POINT(%f %f)", orderDTO.getLongitude(), orderDTO.getLatitude());
@@ -81,6 +81,7 @@ public class OrderRepository {
                     .addParameter("shipping_date", orderDTO.getShipping_date())
                     .addParameter("latitude", orderDTO.getLatitude())
                     .addParameter("longitude", orderDTO.getLongitude())
+                    .addParameter("distributor_id", orderDTO.getDistributor_id())
                     .addParameter("delivery_location", delivery_locationWKT)
                     .addParameter("id", id)
                     .executeUpdate();
