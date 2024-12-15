@@ -86,4 +86,29 @@ public class ComunaRepository {
         }
     }
 
+  
+    public List<ComunaEntity> comunaNoRestricted(){
+
+        String querry = """
+               
+                SELECT
+                   cs.id,
+                   cs.cod_comuna,
+                   cs.comuna,
+                   cs.provincia,
+                   cs.region,
+                   ST_AsGeoJSON(cs.geom) AS geom
+                FROM
+                   public.comunas_santiago cs
+                WHERE
+                   cs.id NOT IN (
+                       SELECT comuna_id
+                       FROM public.restricted_comunas
+                   );
+                """;
+
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(querry).executeAndFetch(ComunaEntity.class);
+        }
+    }
 }

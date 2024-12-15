@@ -27,6 +27,7 @@ public class ComunaController {
         return new ResponseEntity<>(comunaService.isLocationRestricted(locationDTO), HttpStatus.OK);
     }
 
+
 //    Restricted commune
     @PostMapping("/restricted/post/{communeId}")
     public ResponseEntity<?> postRestrictedCommune(@PathVariable int communeId){
@@ -42,4 +43,12 @@ public class ComunaController {
     public ResponseEntity<?> deleteRestrictedCommune(@PathVariable int communeId){
         return new ResponseEntity<>(comunaService.deleteRestrictedCommune(communeId), HttpStatus.OK);
     }
+
+
+
+    @GetMapping("/restringidas")
+    public ResponseEntity<List<ComunaEntity>> comunaNoRestricted(){
+        return new ResponseEntity<>(comunaService.comunaNoRestricted(), HttpStatus.OK);
+    }
 }
+

@@ -22,12 +22,14 @@ public class ComunaService {
         return comunaRepository.isLocationRestricted(locationDTO);
     }
 
+
     //    Restricted commune
 
     public RestrictedCommune postRestrictedCommune(int communeId) {
 
         return comunaRepository.postRestrictedCommune(communeId);
     }
+  
     public List<RestrictedCommune> getAllRestrictedCommune() {
         return comunaRepository.getAllRestrictedCommune();
     }
@@ -36,5 +38,10 @@ public class ComunaService {
         return comunaRepository.deleteRestrictedCommune(communeId);
     }
 
+
+
+    public List<ComunaEntity> comunaNoRestricted(){
+        return comunaRepository.comunaNoRestricted();
+    }
 
 }
