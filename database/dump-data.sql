@@ -47,3 +47,17 @@ INSERT INTO restricted_comunas (comuna_id) VALUES
 (1),
 (7),
 (17);
+
+-- Carga de datos para la tabla "stores"
+INSERT INTO stores (name, address, latitude, longitude, location) VALUES
+('Tienda Central', 'Av. Libertador Bernardo O’Higgins 1234, Santiago', -33.448890, -70.669265, ST_SetSRID(ST_MakePoint(-70.669265, -33.448890), 4326)),
+('Almacén Providencia', 'Av. Providencia 2345, Providencia', -33.426280, -70.617500, ST_SetSRID(ST_MakePoint(-70.617500, -33.426280), 4326)),
+('Bodega Maipú', 'Camino a Melipilla 5678, Maipú', -33.508565, -70.766796, ST_SetSRID(ST_MakePoint(-70.766796, -33.508565), 4326)),
+('Tienda La Florida', 'Av. Vicuña Mackenna 7890, La Florida', -33.527518, -70.598490, ST_SetSRID(ST_MakePoint(-70.598490, -33.527518), 4326)),
+('Sucursal Las Condes', 'Av. Apoquindo 3456, Las Condes', -33.410147, -70.570530, ST_SetSRID(ST_MakePoint(-70.570530, -33.410147), 4326)),
+('Mini Market Recoleta', 'Av. Recoleta 9876, Recoleta', -33.396157, -70.641970, ST_SetSRID(ST_MakePoint(-70.641970, -33.396157), 4326)),
+('Distribuidora Quilicura', 'Av. Américo Vespucio 4567, Quilicura', -33.364297, -70.725900, ST_SetSRID(ST_MakePoint(-70.725900, -33.364297), 4326)),
+('Mercado Independencia', 'Av. Independencia 123, Independencia', -33.419737, -70.653539, ST_SetSRID(ST_MakePoint(-70.653539, -33.419737), 4326)),
+('Local Ñuñoa', 'Irarrázaval 6789, Ñuñoa', -33.460680, -70.609345, ST_SetSRID(ST_MakePoint(-70.609345, -33.460680), 4326)),
+('Punto Peñalolén', 'Av. Tobalaba 4321, Peñalolén', -33.482920, -70.548810, ST_SetSRID(ST_MakePoint(-70.548810, -33.482920), 4326));
+
