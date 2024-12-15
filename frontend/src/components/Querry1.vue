@@ -12,6 +12,9 @@
                 </option>
             </select>
         </div>
+        <div>
+            <button @click="getQuerry1(selectedComuna)">Buscar Repartidores</button>
+        </div>
 
         <table>
             <thead>
@@ -32,27 +35,22 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { getAllUsers } from '../services/clientService';
 import { getComunas } from '../services/comunaService';
 import { querry1 } from '../services/querryService';
 
 const repartidores = ref([]);
 const comunas = ref([]);
-const selectedComuna = ref(null);
+const selectedComuna = ref(1);
 
 onMounted(() => {
-    getUsers();
     getComunasSantiago();
-    gerQuerry1();
 });
 
-// Cambiar esto por los repartidores
 
 const getComunasSantiago = async () => {
     try {
         const response = await getComunas();
         comunas.value = response.data;
-        console.log(comunas.value);
     } catch (error) {
         console.error('Error al obtener las comunas:', error);
     }
@@ -60,9 +58,10 @@ const getComunasSantiago = async () => {
 
 
 
-const gerQuerry1 = async () => {
+const getQuerry1 = async (id_comuna) => {
+    console.log(selectedComuna.value);
     try {
-        const response = await querry1(selectedComuna);
+        const response = await querry1(id_comuna);
         repartidores.value = response.data;
         console.log(comunas.value);
     } catch (error) {
@@ -73,29 +72,29 @@ const gerQuerry1 = async () => {
 </script>
 
 <style scoped>
-/* Centrar el contenido */
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Estilo para el contenedor del desplegable */
+
 .dropdown-container {
     margin: 20px 0;
 }
 
-/* Estilo para el desplegable */
+
 .dropdown {
-    width: 300px; /* Ancho del desplegable */
-    height: 40px; /* Altura del desplegable */
-    font-size: 16px; /* Tamaño de la fuente */
-    padding: 5px; /* Espaciado interno */
-    border: 1px solid #ccc; /* Borde */
-    border-radius: 5px; /* Bordes redondeados */
+    width: 300px; 
+    height: 40px; 
+    font-size: 16px; 
+    padding: 5px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
 }
 
-/* Estilo de la tabla */
+
 table {
     width: 100%;
     border-collapse: collapse;

@@ -11,6 +11,7 @@ export const getComunas = async () => {
     }
 };
 
+
 export const getComunasNoRestringidas = async () => {
     try {
         const response = await httpClient.get("api/v1/comunas/restringidas");        
