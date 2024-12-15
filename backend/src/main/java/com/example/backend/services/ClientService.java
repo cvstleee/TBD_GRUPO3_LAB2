@@ -47,4 +47,8 @@ public class ClientService {
 
         return clientRepository.delete(id);
     }
+
+    public List<ClientEntity> findClientsOutOfServiceRange() {
+        return clientRepository.findClientsOutOfServiceRange();
+    }
 }

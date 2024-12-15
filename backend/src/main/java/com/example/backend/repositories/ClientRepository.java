@@ -110,4 +110,31 @@ public class ClientRepository {
             return rowsSoftDeleted > 0;
         }
     }
+
+    public List<ClientEntity> findClientsOutOfServiceRange() {
+        String query = "SELECT \n" +
+                "    c.id AS id,\n" +
+                "    c.name AS name,\n" +
+                "    c.email AS email,\n" +
+                "\tc.password AS password,\n" +
+                "\tc.phone AS phone,\n" +
+                "\tc.latitude AS latitude,\n" +
+                "\tc.longitude AS longitude,\n" +
+                "\tc.location AS location,\n" +
+                "\tc.deleted_at AS deleted_at\n" +
+                "FROM \n" +
+                "    clients c\n" +
+                "JOIN \n" +
+                "    stores s\n" +
+                "ON \n" +
+                "    c.location IS NOT NULL AND s.location IS NOT NULL\n" +
+                "GROUP BY \n" +
+                "    c.id, c.name, c.email\n" +
+                "HAVING \n" +
+                "    MIN(ST_DistanceSphere(c.location, s.location)) > 50000;";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(query)
+                    .executeAndFetch(ClientEntity.class);
+        }
+    }
 }
