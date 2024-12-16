@@ -21,4 +21,8 @@ export const getComunasNoRestringidas = async () => {
         error.response ? error.response.data : "Error al obtener comunas"
         );
     }
-}
+}; 
+
+
+
+

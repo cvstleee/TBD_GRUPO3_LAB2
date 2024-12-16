@@ -25,3 +25,15 @@ export const deleteRestrictedCommune = async (id) => {
     );
   }
 };
+
+
+export const getComunasRestringidas = async () => {
+  try {
+      const response = await httpClient.get("api/v1/comunas/restricted/getAll");        
+      return { data: response.data, status: response.status };
+  } catch (error) {
+      throw new Error(
+      error.response ? error.response.data : "Error al obtener comunas"
+      );
+  }
+};
