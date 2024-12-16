@@ -104,6 +104,7 @@ public class ComunaRepository {
                    cs.id NOT IN (
                        SELECT comuna_id
                        FROM public.restricted_comunas
+                       WHERE deleted_at IS NULL
                    );
                 """;
 
