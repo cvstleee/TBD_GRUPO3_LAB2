@@ -22,7 +22,13 @@ INSERT INTO products (name, description, price, stock, state, category_id) VALUE
 INSERT INTO clients (name, email, password, phone, latitude, longitude, location, deleted_at) VALUES
 ('Juan Pérez', 'juan.perez@example.com', 'admin', '+5691123456789', -33.435708, -70.629285, ST_SetSRID(ST_MakePoint(-70.629285, -33.435708), 4326), NULL),
 ('María López', 'maria.lopez@example.com', 'colocolo', '+6491167891234', -33.427909, -70.606867, ST_SetSRID(ST_MakePoint(-70.606867, -33.427909), 4326), NULL),
-('Carlos García', 'carlos.garcia@example.com', 'contra', '+5691134567890', -33.561225, -70.571072, ST_SetSRID(ST_MakePoint(-70.571072, -33.561225), 4326), '2024-12-01 10:30:00');
+('Carlos García', 'carlos.garcia@example.com', 'contra', '+5691134567890', -33.561225, -70.571072, ST_SetSRID(ST_MakePoint(-70.571072, -33.561225), 4326), '2024-12-01 10:30:00'),
+('Luis Martínez', 'luis.martinez123@mail.com', 'P@ssword123!', '+56987654321', -32.85, -70.72, ST_SetSRID(ST_MakePoint(-70.72, -32.85), 4326), NULL),
+('Carolina González', 'carolina.gonzalez78@mail.com', 'S3cur3P@ss!', '+56911223344', -34.10, -70.70, ST_SetSRID(ST_MakePoint(-70.70, -34.10), 4326), NULL),
+('Diego Herrera', 'diego.herrera.valpo@mail.com', 'V@lp0Secure!', '+56999887766', -33.0458, -71.6197, ST_SetSRID(ST_MakePoint(-71.6197, -33.0458), 4326), NULL);
+
+
+
 
 -- Carga de datos para la table "distribuitors"
 INSERT INTO distributors (name) VALUES
@@ -54,10 +60,4 @@ INSERT INTO stores (name, address, latitude, longitude, location) VALUES
 ('Almacén Providencia', 'Av. Providencia 2345, Providencia', -33.426280, -70.617500, ST_SetSRID(ST_MakePoint(-70.617500, -33.426280), 4326)),
 ('Bodega Maipú', 'Camino a Melipilla 5678, Maipú', -33.508565, -70.766796, ST_SetSRID(ST_MakePoint(-70.766796, -33.508565), 4326)),
 ('Tienda La Florida', 'Av. Vicuña Mackenna 7890, La Florida', -33.527518, -70.598490, ST_SetSRID(ST_MakePoint(-70.598490, -33.527518), 4326)),
-('Sucursal Las Condes', 'Av. Apoquindo 3456, Las Condes', -33.410147, -70.570530, ST_SetSRID(ST_MakePoint(-70.570530, -33.410147), 4326)),
-('Mini Market Recoleta', 'Av. Recoleta 9876, Recoleta', -33.396157, -70.641970, ST_SetSRID(ST_MakePoint(-70.641970, -33.396157), 4326)),
-('Distribuidora Quilicura', 'Av. Américo Vespucio 4567, Quilicura', -33.364297, -70.725900, ST_SetSRID(ST_MakePoint(-70.725900, -33.364297), 4326)),
-('Mercado Independencia', 'Av. Independencia 123, Independencia', -33.419737, -70.653539, ST_SetSRID(ST_MakePoint(-70.653539, -33.419737), 4326)),
-('Local Ñuñoa', 'Irarrázaval 6789, Ñuñoa', -33.460680, -70.609345, ST_SetSRID(ST_MakePoint(-70.609345, -33.460680), 4326)),
-('Punto Peñalolén', 'Av. Tobalaba 4321, Peñalolén', -33.482920, -70.548810, ST_SetSRID(ST_MakePoint(-70.548810, -33.482920), 4326));
-
+('Sucursal Las Condes', 'Av. Apoquindo 3456, Las Condes', -33.410147, -70.570530, ST_SetSRID(ST_MakePoint(-70.570530, -33.410147), 4326));
